@@ -1,0 +1,550 @@
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+
+.sidebar.open {
+    left: 0; /* Sidebar slides in from the left */
+}
+
+.page {
+    width: 100%;
+    position: relative;
+    will-change: transform;
+}
+
+
+/* Animation classes */
+
+.logo-container {
+    display: inline-block;
+    margin: 2rem;
+}
+
+/* Main logo text styles */
+.logo-text {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Logo underline effect */
+.logo-text::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease-out;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes underline {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+/* Animation classes */
+.animate-logo {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-logo::after {
+    animation: underline 0.8s ease-out 0.5s forwards;
+}
+
+
+.nav li:hover {
+    color: rgb(248, 87, 7);
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    /* background-color: #f0f0f0; */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    /* color: black; */
+}
+
+
+
+/* Hide scrollbar for Chrome, Safari, and Edge */
+.scrollbar-hide::-webkit-scrollbar {
+display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.scrollbar-hide {
+scrollbar-width: none;
+}
+
+
+/* Hide default scrollbar and enable smooth scrolling */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
+
+.open1.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+
+
+
+            @layer utilities {
+                .smooth-transition {
+                    @apply transition-all duration-300 ease-in-out;
+                }
+                .hover-scale {
+                    @apply smooth-transition hover:scale-[1.02] transform origin-center;
+                }
+                .hover-rotate {
+                    @apply smooth-transition hover:rotate-1 transform origin-center;
+                }
+                .hover-shadow {
+                    @apply smooth-transition hover:shadow-lg;
+                }
+                .hover-brighten {
+                    @apply smooth-transition hover:brightness-105;
+                }
+            }
+
+
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            @keyframes slideUp {
+                from { 
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to { 
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-5px); }
+            }
+            
+            @keyframes wiggle {
+                0%, 100% { transform: rotate(0deg); }
+                25% { transform: rotate(5deg); }
+                75% { transform: rotate(-5deg); }
+            }
+            
+            .animate-fadeIn {
+                animation: fadeIn 0.8s ease-out;
+            }
+            
+            .animate-slideUp {
+                animation: slideUp 0.6s ease-out;
+            }
+            
+            .animate-bounce {
+                animation: bounce 1s infinite;
+            }
+            
+            .animate-wiggle {
+                animation: wiggle 1s infinite;
+            }
+            
+            .animate-pulse {
+                animation: pulse 2s infinite;
+            }
+            
+            .delay-100 {
+                animation-delay: 100ms;
+            }
+            
+            .delay-200 {
+                animation-delay: 200ms;
+            }
+            
+            @keyframes pulse {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.5; }
+            }
+
+
+ 
+
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            @keyframes slideUp {
+                from { 
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to { 
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+            
+            @keyframes wiggle {
+                0%, 100% { transform: rotate(0deg); }
+                25% { transform: rotate(5deg); }
+                75% { transform: rotate(-5deg); }
+            }
+            
+            @keyframes pulse {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.5; }
+            }
+            
+            .animate-fadeIn {
+                animation: fadeIn 0.8s ease-out;
+            }
+            
+            .animate-slideUp {
+                animation: slideUp 0.6s ease-out;
+            }
+            
+            .animate-bounce {
+                animation: bounce 1.5s infinite;
+            }
+            
+            .animate-wiggle {
+                animation: wiggle 1s infinite;
+            }
+            
+            .animate-pulse {
+                animation: pulse 2s infinite;
+            }
+            
+            .delay-100 {
+                animation-delay: 100ms;
+            }
+            
+            .delay-200 {
+                animation-delay: 200ms;
+            }
+            
+            .rotate-180 {
+                transform: rotate(180deg);
+            }
+            
+            .origin-top {
+                transform-origin: top;
+            }
+            
+            .scale-y-0 {
+                transform: scaleY(0);
+            }
+            
+            .scale-y-100 {
+                transform: scaleY(1);
+            }
+            
+            .transition-all {
+                transition-property: all;
+            }
+            
+            .duration-500 {
+                transition-duration: 500ms;
+            }
+     
+        
+
+            /* Keyframe animations */
+            @keyframes slideInFromTop {
+                from { transform: translateY(-50px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            
+            @keyframes slideInFromBottom {
+                from { transform: translateY(50px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            
+            .slide-in-from-top {
+                animation: slideInFromTop 1s ease-out forwards;
+                animation-delay: 0.5s;
+            }
+            
+            .slide-in-from-bottom {
+                animation: slideInFromBottom 1s ease-out forwards;
+                animation-delay: 0.8s;
+            }
+            
+            .slide {
+                transition: opacity 1s ease-in-out, transform 1.5s ease-in-out;
+            }
+            
+            .slide.active {
+                opacity: 1;
+                transform: scale(1);
+            }
+            
+            /* Gradient overlay for better text visibility */
+            .slide-wrapper::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+                z-index: 1;
+            }
+
+
+
+            /* Keyframe animations */
+            @keyframes float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes slideInLeft {
+                from { 
+                    transform: translateX(-50px);
+                    opacity: 0;
+                }
+                to { 
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideInRight {
+                from { 
+                    transform: translateX(50px);
+                    opacity: 0;
+                }
+                to { 
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideInBottom {
+                from { 
+                    transform: translateY(50px);
+                    opacity: 0;
+                }
+                to { 
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+            
+            /* Animation classes */
+            .animate-float {
+                animation: float 3s ease-in-out infinite;
+            }
+            .animate-fadeIn {
+                animation: fadeIn 1s ease-out forwards;
+            }
+            .animate-slideInLeft {
+                animation: slideInLeft 0.8s ease-out forwards;
+            }
+            .animate-slideInRight {
+                animation: slideInRight 0.8s ease-out forwards;
+            }
+            .animate-slideInBottom {
+                animation: slideInBottom 0.8s ease-out forwards;
+            }
+            .delay-100 {
+                animation-delay: 0.1s;
+            }
+
+
+            @keyframes fadeInSlow {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-15px); }
+            }
+            @keyframes float-delay {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-20px); }
+            }
+            
+            /* Animation classes */
+            .animate-fadeInSlow {
+                animation: fadeInSlow 0.8s ease-out forwards;
+            }
+            .animate-fadeIn {
+                animation: fadeIn 0.6s ease-out forwards;
+            }
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+            .animate-float-delay {
+                animation: float-delay 7s ease-in-out infinite 1s;
+            }
+            .delay-100 {
+                animation-delay: 0.1s;
+            }
+
+            /* Keyframe animations */
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            /* Animation classes */
+            .animate-fadeIn {
+                animation: fadeIn 0.6s ease-out forwards;
+            }
+            .delay-100 {
+                animation-delay: 0.1s;
+            }
+            .delay-200 {
+                animation-delay: 0.2s;
+            }
+            .delay-300 {
+                animation-delay: 0.3s;
+            }
+            
+            /* Custom styles */
+            .social-icon {
+                @apply w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 shadow-sm;
+            }
+            .footer-link {
+                @apply transition-all duration-300;
+            }
+       
+
+            
+/* 
+            Page 4 */
+
+            /* Custom Animations */
+/* Custom Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+/* Announcement card styles */
+.announcement-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: center bottom;
+    backface-visibility: hidden;
+}
+
+.announcement-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Category badges */
+.badge {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.badge:hover::after {
+    transform: translateX(100%);
+}
+
+.badge-general {
+    background-color: #E0E7FF;
+    color: #4F46E5;
+}
+
+.badge-academic {
+    background-color: #D1FAE5;
+    color: #047857;
+}
+
+.badge-event {
+    background-color: #FEE2E2;
+    color: #B91C1C;
+}
+
+.badge-opportunity {
+    background-color: #FEF3C7;
+    color: #B45309;
+}
+
+.badge-urgent {
+    background-color: #FFE4E6;
+    color: #F43F5E;
+    animation: pulse 2s infinite;
+}
+
+/* Floating animation for important cards */
+.floating-card {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Initialize wow.js */
+.wow {
+    visibility: hidden;
+}
+
+/* Gradient text for headings */
+.gradient-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}

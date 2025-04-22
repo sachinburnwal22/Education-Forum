@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CommunityHub | Connect & Grow Together</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      html,
+      body {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+        font-size: 16px;
+      }
+
+      .gradient-bg {
+        background: linear-gradient(
+          135deg,
+          #6b73ff 0%,
+          #000dff 50%,
+          #00d4ff 100%
+        );
+      }
+
+      .gradient-text {
+        background: linear-gradient(
+          135deg,
+          #6b73ff 0%,
+          #000dff 50%,
+          #00d4ff 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .card-hover {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 30px -10px rgba(0, 0, 0, 0.15);
+      }
+
+      .btn-glow {
+        transition: all 0.3s ease;
+        font-size: 1rem;
+      }
+
+      .btn-glow:hover {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.7);
+        transform: translateY(-3px);
+      }
+
+      .floating {
+        animation: floating 6s ease-in-out infinite;
+      }
+
+      @keyframes floating {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .bg-bubbles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+      }
+
+      .bubble {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(99, 102, 241, 0.1);
+        opacity: 0;
+        animation: float 15s infinite ease-in;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.1;
+        }
+        100% {
+          transform: translateY(-1000px) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      /* Video Modal Animation */
+      .video-modal {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .video-modal.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .video-modal-content {
+        transform: scale(0.9);
+        transition: all 0.3s ease;
+      }
+
+      .video-modal.active .video-modal-content {
+        transform: scale(1);
+      }
+
+      /* Larger text sizes */
+      .hero-title {
+        font-size: 3.2rem;
+        line-height: 1.2;
+      }
+
+      .hero-subtitle {
+        font-size: 1.3rem;
+        line-height: 1.6;
+      }
+
+      .user-avatars img {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
+
+      .forum-card {
+        font-size: 1rem;
+      }
+
+      /* Sidebar styles */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 280px;
+        height: 100vh;
+        background: white;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        padding-top: 80px;
+        overflow-y: auto;
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .sidebar-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Mobile menu toggle button */
+      .mobile-menu-btn {
+        display: none;
+        z-index: 1001;
+      }
+
+      @media (max-width: 768px) {
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .hero-title {
+          font-size: 2.3rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1.1rem;
+        }
+
+        .user-avatars img {
+          width: 2.8rem;
+          height: 2.8rem;
+        }
+
+        /* Fix for user avatars and text alignment */
+        .user-avatars-container {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        .user-avatars {
+          display: flex;
+          flex-shrink: 0;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero-title {
+          font-size: 2rem;
+        }
+
+        .flex-col.sm\:flex-row {
+          flex-direction: column;
+        }
+
+        .space-y-4.sm\:space-y-0 {
+          margin-bottom: 1rem;
+        }
+
+        .sm\:space-x-5 > * + * {
+          margin-left: 0;
+          margin-top: 1rem;
+        }
+
+        /* Ensure buttons are full width on mobile */
+        .mobile-full-width {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="px-6 py-4">
+        <div class="mb-8">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Menu</h3>
+          <ul class="space-y-3">
+            <li>
+              <a
+                href="home.html"
+                class="block px-4 py-2 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
+                >Forums</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
+                >Groups</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
+                >Events</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
+                >Members</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <button
+            class="w-full px-6 py-2.5 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-700 transition duration-300 mobile-full-width"
+          >
+            Sign Up
+          </button>
+          <button
+            class="w-full mt-3 px-6 py-2 text-blue-600 font-medium hover:bg-blue-50 rounded-full transition duration-300 mobile-full-width"
+          >
+            Log In
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Animated Background Bubbles -->
+    <div class="bg-bubbles">
+      <div
+        class="bubble"
+        style="
+          left: 10%;
+          width: 60px;
+          height: 60px;
+          animation-delay: 0s;
+          animation-duration: 15s;
+        "
+      ></div>
+      <div
+        class="bubble"
+        style="
+          left: 20%;
+          width: 100px;
+          height: 100px;
+          animation-delay: 2s;
+          animation-duration: 20s;
+        "
+      ></div>
+      <div
+        class="bubble"
+        style="
+          left: 30%;
+          width: 80px;
+          height: 80px;
+          animation-delay: 4s;
+          animation-duration: 18s;
+        "
+      ></div>
+      <div
+        class="bubble"
+        style="
+          left: 40%;
+          width: 70px;
+          height: 70px;
+          animation-delay: 1s;
+          animation-duration: 12s;
+        "
+      ></div>
+      <div
+        class="bubble"
+        style="
+          left: 50%;
+          width: 90px;
+          height: 90px;
+          animation-delay: 3s;
+          animation-duration: 16s;
+        "
+      ></div>
+      <div
+        class="bubble"
+        style="
+          left: 60%;
+          width: 110px;
+          height: 110px;
+          animation-delay: 0s;
+          animation-duration: 22s;
+        "
+      ></div>
+      <div
+        class="bubble"
+        style="
+          left: 70%;
+          width: 65px;
+          height: 65px;
+          animation-delay: 5s;
+          animation-duration: 14s;
+        "
+      ></div>
+      <div
+        class="bubble"
+        style="
+          left: 80%;
+          width: 85px;
+          height: 85px;
+          animation-delay: 2s;
+          animation-duration: 19s;
+        "
+      ></div>
+    </div>
+
+    <!-- Header -->
+    <header
+      class="fixed w-full top-0 z-50 backdrop-blur-md bg-white/80 shadow-sm"
+    >
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div
+          class="flex items-center space-x-3 animate__animated animate__fadeIn"
+        >
+          <div class="flex items-center">
+            <svg
+              class="w-8 h-8 text-blue-600 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+              />
+            </svg>
+            <span class="text-lg font-bold text-gray-800"
+              >Edu <span class="text-green-500">Connect</span></span
+            >
+          </div>
+        </div>
+
+        <div
+          class="flex items-center space-x-4 animate__animated animate__fadeIn"
+        >
+          <button
+            class="hidden md:block px-6 py-2 text-blue-600 font-medium hover:bg-blue-50 rounded-full transition duration-300"
+          >
+            Log In
+          </button>
+          <button
+            class="hidden md:block px-6 py-2.5 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-700 transition duration-300 shadow-lg hover:shadow-xl"
+            id="headerSignupBtn"
+          >
+            Sign Up
+          </button>
+          <button id="menu-toggle" class="mobile-menu-btn text-gray-700">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="relative">
+      <section class="container mx-auto px-6 py-20 md:py-28">
+        <div class="flex flex-col md:flex-row items-center">
+          <div
+            class="md:w-1/2 mb-16 md:mb-0 animate__animated animate__fadeInLeft"
+          >
+            <h1 class="hero-title font-bold text-gray-900 mb-8">
+              Connect, Share & <span class="gradient-text">Grow</span> Together
+            </h1>
+            <p class="hero-subtitle text-gray-600 mb-10 max-w-xl">
+              Join our vibrant community forum where knowledge meets passion.
+              Engage in meaningful discussions, share your expertise, and
+              connect with like-minded individuals.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5"
+            >
+              <a
+                href="home.html"
+                class="px-8 py-3.5 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-700 transition duration-300 shadow-xl hover:shadow-2xl btn-glow pulse flex items-center justify-center mobile-full-width"
+              >
+                Get Started - It's Free
+              </a>
+              <button
+                id="watchDemoBtn"
+                class="px-8 py-3.5 border-2 border-blue-600 text-blue-600 font-medium rounded-full hover:bg-blue-50 transition duration-300 flex items-center justify-center space-x-3 mobile-full-width"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>Watch Demo</span>
+              </button>
+            </div>
+
+            <!-- Video Modal -->
+            <div
+              id="videoModal"
+              class="video-modal fixed inset-0 z-[99999999] flex items-center justify-center backdrop-blur-md"
+            >
+              <div class="video-modal-content relative w-full max-w-4xl mx-4">
+                <!-- Close Button with animation -->
+                <button
+                  id="closeVideoBtn"
+                  class="absolute -top-12 right-0 text-balck hover:text-cyan-400 transition-colors duration-300 p-2 rounded-full hover:bg-white/10 animate__animated animate__fadeIn"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-8 w-8"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+
+                <!-- Video Container with animation -->
+                <div
+                  class="aspect-w-16 aspect-h-9 w-full rounded-xl overflow-hidden shadow-2xl bg-black animate__animated animate__zoomIn"
+                >
+                  <iframe
+                    id="videoPlayer"
+                    class="w-full h-[300px] sm:h-[400px] md:h-[500px]"
+                    src="https://www.youtube.com/embed/gca5PTzzbjc?enablejsapi=1"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  >
+                  </iframe>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-10 user-avatars-container">
+              <div class="user-avatars flex -space-x-3">
+                <img
+                  src="https://randomuser.me/api/portraits/women/12.jpg"
+                  class="rounded-full border-3 border-white shadow-lg"
+                  alt="User"
+                />
+                <img
+                  src="https://randomuser.me/api/portraits/men/32.jpg"
+                  class="rounded-full border-3 border-white shadow-lg"
+                  alt="User"
+                />
+                <img
+                  src="https://randomuser.me/api/portraits/women/45.jpg"
+                  class="rounded-full border-3 border-white shadow-lg"
+                  alt="User"
+                />
+              </div>
+              <span class="text-gray-600 mt-3 sm:mt-0 sm:ml-4"
+                >Join 10,000+ active members</span
+              >
+            </div>
+          </div>
+
+          <div class="md:w-1/2 animate__animated animate__fadeInRight">
+            <div class="relative">
+              <div
+                class="w-full max-w-lg mx-auto bg-white p-8 rounded-2xl shadow-2xl card-hover floating forum-card"
+                style="animation-duration: 7s"
+              >
+                <div class="flex items-center space-x-4 mb-5">
+                  <div
+                    class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center shadow-inner"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6 text-blue-600"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-gray-900 text-xl">
+                      Welcome to CommunityHub!
+                    </h3>
+                    <p class="text-sm text-gray-500">Just now</p>
+                  </div>
+                </div>
+                <p class="text-gray-700 mb-5 leading-relaxed">
+                  Hey everyone! I'm new here and excited to be part of this
+                  community. I'm passionate about web development and looking
+                  forward to learning from all of you.
+                </p>
+                <div class="flex space-x-5 text-base">
+                  <button
+                    class="flex items-center space-x-2 text-gray-500 hover:text-blue-600 transition duration-300"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
+                      />
+                    </svg>
+                    <span>12</span>
+                  </button>
+                  <button
+                    class="flex items-center space-x-2 text-gray-500 hover:text-blue-600 transition duration-300"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                      />
+                    </svg>
+                    <span>5</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Login Modal -->
+    <!-- Login Modal -->
+    <!-- Combined Login/Signup Modal -->
+    <!-- Auth Modal -->
+    <div
+      id="authModal"
+      class="fixed inset-0 z-[99999999] flex items-center justify-center backdrop-blur-md hidden"
+    >
+      <div
+        class="animate__animated animate__zoomIn bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md mx-4 relative"
+      >
+        <!-- Close Button -->
+        <button
+          id="closeAuthBtn"
+          aria-label="Close authentication dialog"
+          class="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Welcome Back</h2>
+          <form id="login" class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Email</label
+              >
+              <input
+                id="loginEmail"
+                type="email"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Password</label
+              >
+              <input
+                id="loginPassword"
+                type="password"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700"
+            >
+              Log In
+            </button>
+          </form>
+          <div id="loginMessage" class="mt-2 text-sm"></div>
+          <p class="text-sm text-center mt-6 text-gray-600">
+            Don't have an account?
+            <a
+              href="#"
+              id="toSignup"
+              class="text-blue-600 hover:text-blue-500 font-medium"
+            >
+              Sign up
+            </a>
+          </p>
+        </div>
+
+        <!-- SIGNUP FORM -->
+        <div id="signupForm" class="hidden">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Create Account</h2>
+          <form id="signup" class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Full Name</label
+              >
+              <input
+                id="signupName"
+                type="text"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Email</label
+              >
+              <input
+                id="signupEmail"
+                type="email"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Password</label
+              >
+              <input
+                id="signupPassword"
+                type="password"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                placeholder="Create a password"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                Confirm Password
+              </label>
+              <input
+                id="confirmPassword"
+                type="password"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                placeholder="Confirm your password"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700"
+            >
+              Sign Up
+            </button>
+          </form>
+          <div id="signupMessage" class="mt-2 text-sm"></div>
+          <p class="text-sm text-center mt-6 text-gray-600">
+            Already have an account?
+            <a
+              href="#"
+              id="toLogin"
+              class="text-blue-600 hover:text-blue-500 font-medium"
+            >
+              Log in
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ELEMENTS
+      const authModal = document.getElementById("authModal");
+      const closeAuthBtn = document.getElementById("closeAuthBtn");
+      const loginFormWrap = document.getElementById("loginForm");
+      const signupFormWrap = document.getElementById("signupForm");
+      const headerSignupBtn = document.getElementById("headerSignupBtn");
+      const loginButtons = document.querySelectorAll(
+        "header button:first-child, .sidebar button:not(.mobile-full-width):first-child"
+      );
+      const signupButtons = document.querySelectorAll(
+        "header button:not(#menu-toggle):last-child, .sidebar button.mobile-full-width"
+      );
+      const toSignup = document.getElementById("toSignup");
+      const toLogin = document.getElementById("toLogin");
+
+      // FORM ELEMENTS
+      const loginForm = document.getElementById("login");
+      const loginBtn = loginForm?.querySelector('button[type="submit"]');
+      const loginMessage = document.getElementById("loginMessage");
+
+      const signupForm = document.getElementById("signup");
+      const signupBtn = signupForm?.querySelector('button[type="submit"]');
+      const signupMessage = document.getElementById("signupMessage");
+
+      // OPEN / CLOSE MODAL
+      function openModal(isSignup = false) {
+        authModal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+
+        if (isSignup) {
+          loginFormWrap.classList.add("hidden");
+          signupFormWrap.classList.remove("hidden");
+        } else {
+          loginFormWrap.classList.remove("hidden");
+          signupFormWrap.classList.add("hidden");
+        }
+      }
+
+      function closeModal() {
+        authModal.classList.add("hidden");
+        document.body.style.overflow = "";
+      }
+
+      // HEADER BUTTON
+      if (headerSignupBtn) {
+        headerSignupBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          openModal(true);
+        });
+      }
+
+      // OPEN LOGIN / SIGNUP
+      loginButtons.forEach((btn) =>
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          openModal(false);
+        })
+      );
+      signupButtons.forEach((btn) =>
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          openModal(true);
+        })
+      );
+
+      // TOGGLE INSIDE MODAL
+      toSignup?.addEventListener("click", (e) => {
+        e.preventDefault();
+        loginFormWrap.classList.add("hidden");
+        signupFormWrap.classList.remove("hidden");
+      });
+
+      toLogin?.addEventListener("click", (e) => {
+        e.preventDefault();
+        signupFormWrap.classList.add("hidden");
+        loginFormWrap.classList.remove("hidden");
+      });
+
+      // CLOSE EVENTS
+      closeAuthBtn?.addEventListener("click", closeModal);
+      window.addEventListener("click", (e) => {
+        if (e.target === authModal) closeModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+
+      // LOGIN HANDLER
+      loginForm?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        loginBtn.disabled = true;
+        loginBtn.textContent = "Logging in...";
+
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+
+        try {
+          const res = await fetch("http://localhost:5000/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            loginMessage.textContent = data.message || "Login failed";
+            loginMessage.classList.add("text-red-500");
+          } else {
+            loginMessage.textContent = data.message;
+            loginMessage.classList.replace("text-red-500", "text-green-600");
+            setTimeout(() => {
+              window.location.href = "home.html";
+            }, 500);
+          }
+        } catch {
+          loginMessage.textContent = "Network error";
+          loginMessage.classList.add("text-red-500");
+        } finally {
+          loginBtn.disabled = false;
+          loginBtn.textContent = "Log In";
+        }
+      });
+
+      // SIGNUP HANDLER
+      signupForm?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        signupBtn.disabled = true;
+        signupBtn.textContent = "Signing up...";
+
+        const username = document.getElementById("signupName").value.trim();
+        const email = document.getElementById("signupEmail").value.trim();
+        const password = document.getElementById("signupPassword").value;
+        const confirm = document.getElementById("confirmPassword").value;
+
+        if (password !== confirm) {
+          signupMessage.textContent = "Passwords do not match!";
+          signupMessage.classList.add("text-red-500");
+          signupBtn.disabled = false;
+          signupBtn.textContent = "Sign Up";
+          return;
+        }
+
+        try {
+          const res = await fetch("http://localhost:5000/api/auth/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, email, password }),
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            signupMessage.textContent = data.message || "Signup failed";
+            signupMessage.classList.add("text-red-500");
+          } else {
+            signupMessage.textContent = data.message;
+            signupMessage.classList.replace("text-red-500", "text-green-600");
+            setTimeout(() => {
+              // Switch to login form after successful signup
+              signupFormWrap.classList.add("hidden");
+              loginFormWrap.classList.remove("hidden");
+
+              // Optionally, clear signup inputs and show success message on login side
+              loginMessage.textContent =
+                "Signup successful! You can now log in.";
+              loginMessage.classList.remove("text-red-500");
+              loginMessage.classList.add("text-green-600");
+            }, 1000);
+          }
+        } catch {
+          signupMessage.textContent = "Network error";
+          signupMessage.classList.add("text-red-500");
+        } finally {
+          signupBtn.disabled = false;
+          signupBtn.textContent = "Sign Up";
+        }
+      });
+    </script>
+  </body>
+</html>

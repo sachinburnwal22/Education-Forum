@@ -1,0 +1,245 @@
+/* Mobile Dropdown Styles */
+.mobile-dropdown-group {
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.mobile-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.2s ease;
+    opacity: 0;
+}
+
+.mobile-dropdown-content:not(.hidden) {
+    max-height: 500px;
+    opacity: 1;
+}
+
+.mobile-dropdown-icon {
+    transition: transform 0.2s ease;
+}
+
+.mobile-dropdown-icon.rotate-180 {
+    transform: rotate(180deg);
+}
+
+/* Sidebar Overlay */
+#sidebarOverlay {
+    transition: opacity 0.3s ease;
+}
+
+/* Mobile Menu Animation */
+.mobile-nav {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-nav:not(.hidden) {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+
+/* Search overlay transition */
+#searchOverlay {
+    transition: opacity 0.3s ease;
+}
+
+/* Search result items */
+.search-result-item {
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.2s ease;
+}
+
+.search-result-item:hover {
+    background-color: #f3f4f6;
+}
+
+.search-result-item h4 {
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 0.25rem;
+}
+
+.search-result-item p {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.search-result-item .badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 9999px;
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+/* Animation for search input focus */
+#searchInput:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Mobile dropdown transitions */
+.mobile-dropdown-content {
+    transition: all 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.mobile-dropdown-content.active {
+    max-height: 500px;
+}
+
+.mobile-dropdown-icon {
+    transition: transform 0.3s ease;
+}
+
+.mobile-dropdown-btn.active .mobile-dropdown-icon {
+    transform: rotate(180deg);
+}
+
+
+/* goto  */
+
+
+.back-to-top-container {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    width: 4rem;
+    height: 4rem;
+}
+
+.back-to-top-container.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top-btn {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: linear-gradient(to bottom right, #3b82f6, #8b5cf6);
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+    padding: 0;
+    margin: 0;
+}
+
+.back-to-top-btn:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-2px);
+}
+
+.back-to-top-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: transform 0.3s ease;
+    z-index: 2;
+}
+
+.back-to-top-btn:hover .back-to-top-icon {
+    transform: translateY(-4px);
+}
+
+.back-to-top-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 0 15px 5px rgba(99, 102, 241, 0.5);
+    z-index: 1;
+}
+
+.back-to-top-btn:hover .back-to-top-glow {
+    opacity: 1;
+}
+
+/* Particle styles */
+.particle {
+    position: absolute;
+    width: 0.25rem;
+    height: 0.25rem;
+    background-color: white;
+    border-radius: 9999px;
+    opacity: 0;
+    z-index: 1;
+}
+
+.particle-1 {
+    top: 20%;
+    left: 20%;
+    animation: particle-float 3s infinite ease-in-out;
+}
+
+.particle-2 {
+    top: 60%;
+    left: 30%;
+    animation: particle-float 3.5s infinite ease-in-out 0.5s;
+}
+
+.particle-3 {
+    top: 40%;
+    left: 70%;
+    animation: particle-float 4s infinite ease-in-out 1s;
+}
+
+@keyframes particle-float {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(-15px) translateX(5px);
+        opacity: 0.8;
+    }
+}
+
+/* Progress ring styles */
+.progress-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    pointer-events: none;
+    z-index: 0;
+    transition: visibility 0.2s ease;
+}
+
+.progress-ring-circle {
+    stroke-dasharray: 251;
+    stroke-dashoffset: 251;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+/* Bounce animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.back-to-top-btn:hover {
+    animation: bounce 1s ease infinite;
+}

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Community Forum | Development Team</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+      color: #f0f0f0;
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    .back-button {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 100;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .back-button i {
+      transition: transform 0.3s ease;
+    }
+
+    .back-button:hover i {
+      transform: translateX(-3px);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeInDown 0.8s ease-out;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 3.2rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      color: #b0b0b0;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .project-intro {
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 60px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1s ease-out;
+    }
+
+    .project-intro h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: #ffffff;
+      background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .project-intro p {
+      font-size: 1.1rem;
+      color: #d0d0d0;
+      margin-bottom: 15px;
+      line-height: 1.8;
+    }
+
+    .developers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .developer-card {
+      background: rgba(40, 40, 40, 0.8);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+      position: relative;
+      z-index: 1;
+      border: 1px solid rgba(255,255,255,0.05);
+      backdrop-filter: blur(5px);
+    }
+
+    .developer-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(106,17,203,0.15) 0%, rgba(37,117,252,0.15) 100%);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .developer-card.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .developer-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      border-color: rgba(106,17,203,0.3);
+    }
+
+    .developer-card:hover::before {
+      opacity: 1;
+    }
+
+    .developer-image {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 240px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .developer-image img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid rgba(255,255,255,0.2);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: all 0.4s ease;
+    }
+
+    .developer-card:hover .developer-image img {
+      transform: scale(1.08);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .developer-info {
+      text-align: center;
+      padding: 25px;
+    }
+
+    .developer-info h3 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 5px;
+    }
+
+    .developer-info .role {
+      font-size: 1rem;
+      color: #a0a0a0;
+      margin-bottom: 15px;
+      font-weight: 500;
+      position: relative;
+      display: inline-block;
+    }
+
+    .developer-info .role::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+      border-radius: 3px;
+    }
+
+    .developer-info .bio {
+      font-size: 0.95rem;
+      color: #b0b0b0;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(60, 60, 60, 0.8);
+      color: #d0d0d0;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .social-icon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      color: white;
+    }
+
+    .social-icon:nth-child(1):hover {
+      background: #0077b5; /* LinkedIn */
+    }
+    .social-icon:nth-child(2):hover {
+      background: #333; /* GitHub */
+    }
+    .social-icon:nth-child(3):hover {
+      background: #1da1f2; /* Twitter */
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes cardEntrance {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding-top: 100px;
+      }
+      
+      .back-button {
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
+      }
+      
+      header h1 {
+        font-size: 2.4rem;
+      }
+      header p {
+        font-size: 1.1rem;
+      }
+      
+      .project-intro {
+        padding: 25px;
+      }
+      
+      .project-intro h2 {
+        font-size: 1.8rem;
+      }
+      
+      .developers-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .developer-card {
+        max-width: 100%;
+      }
+    }
+
+    /* Special styling for lead developers */
+    .lead-developer {
+      grid-column: span 2;
+      display: flex;
+      flex-direction: row;
+      text-align: left;
+    }
+
+    .lead-developer .developer-image {
+      flex: 0 0 300px;
+      height: auto;
+      border-radius: 16px 0 0 16px;
+    }
+
+    .lead-developer .developer-info {
+      text-align: left;
+      padding: 30px;
+    }
+
+    .lead-developer .developer-image img {
+      width: 180px;
+      height: 180px;
+    }
+
+    .lead-developer .social-links {
+      justify-content: flex-start;
+    }
+
+    @media (max-width: 768px) {
+      .lead-developer {
+        grid-column: span 1;
+        flex-direction: column;
+      }
+      .lead-developer .developer-image {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 240px;
+        border-radius: 16px 16px 0 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="back-button" onclick="window.location.href='home.html'">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </button>
+    
+    <header>
+      <h1>Our Development Team</h1>
+      <p>The brilliant minds behind the Student Community Forum platform</p>
+    </header>
+    
+    <div class="project-intro">
+      <h2>Student Community Forum Project</h2>
+      <p>Our team has developed a comprehensive online community platform designed specifically for students. This forum provides a space for academic discussions, resource sharing, and peer-to-peer learning across various disciplines.</p>
+      <p>The platform features real-time chat, discussion threads, resource repositories, and personalized learning tools. Built with modern web technologies, it offers a responsive and accessible experience across all devices.</p>
+      <p>Our goal is to foster collaboration and knowledge sharing among students worldwide, creating a vibrant academic community that transcends geographical boundaries.</p>
+    </div>
+    
+    <div class="developers-grid">
+      <!-- Lead Developers (2x2) -->
+      <div class="developer-card lead-developer">
+        <div class="developer-image">
+          <img src="" alt="Ansh Verma">
+         </div>
+        <div class="developer-info">
+          <h3>Ansh Verma</h3>
+          <p class="role">Lead Full-Stack Developer</p>
+          <p class="bio">Architected the core platform with 5+ years of experience in scalable web applications. Specializes in React, Node.js, and cloud infrastructure. Led the team in implementing best practices and modern development workflows.</p>
+          <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+      
+      <!-- Team Members (2x2) -->
+      <div class="developer-card">
+        <div class="developer-image">
+          <img src="https://media.licdn.com/dms/image/v2/D5603AQGjrun6J6XnEA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1696413288165?e=1749686400&v=beta&t=bykOouFSXoIsCcQM4Goh_MLG5NHXyyT4BUUogDfP7-I" alt="Amrit Raj">
+        </div>
+        <div class="developer-info">
+          <h3>Amrit Raj</h3>
+          <p class="role">Frontend Lead</p>
+          <p class="bio">Crafted the responsive UI/UX with React and modern CSS. Implemented interactive components and optimized frontend performance for seamless user experience.</p>
+          <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="developer-card">
+        <div class="developer-image">
+          <img src="https://media.licdn.com/dms/image/v2/D5603AQF1OLmw4iJhKw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1720631004226?e=1750291200&v=beta&t=W9DJfqdNr9w-8mgwFbrAn_WLuM0gvlTKrxf9uYTabV4" alt="Vaibhav Tiwari">
+        </div>
+        <div class="developer-info">
+          <h3>Sachin Barnwal</h3>
+          <p class="role">DevOps Engineer</p>
+          <p class="bio">Implemented CI/CD pipelines, containerization, and cloud deployment. Ensured high availability, scalability, and security of the production environment.</p>
+          <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Next Row (2x2) -->
+      <div class="developer-card">
+        <div class="developer-image">
+          <img src="https://media.licdn.com/dms/image/v2/D5603AQGxl9imYRmQKg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718318372649?e=1750291200&v=beta&t=MLmmMTKrFaIjJkSrW4YAtpJ3cdRv-4PNo6qsprsyZn4" alt="Nikhil Kumar">
+        </div>
+        <div class="developer-info">
+          <h3>Vaibhav Tiwari</h3>
+          <p class="role">Full-Stack Developer</p>
+          <p class="bio">Developed core forum features including thread management, voting system, and user profiles. Contributed to both frontend and backend components.</p>
+          <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="developer-card">
+        <div class="developer-image">
+          <img src="" alt="Nikhil Kumar">
+        </div>
+        <div class="developer-info">
+          <h3>Nikhil Kumar</h3>
+          <p class="role">UI/UX Designer</p>
+          <p class="bio">Created intuitive user interfaces and design systems. Conducted user research and testing to optimize the platform's accessibility and usability.</p>
+          <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.developer-card');
+      
+      // Staggered animation with different delays
+      cards.forEach((card, index) => {
+        // Set different delays based on position
+        card.style.animationDelay = `${index * 0.15}s`;
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        });
+
+        observer.observe(card);
+      });
+      
+      // Animate project intro
+      const projectIntro = document.querySelector('.project-intro');
+      setTimeout(() => {
+        projectIntro.style.animation = 'fadeIn 1s ease-out forwards';
+      }, 300);
+    });
+    
+    // Smooth back button transition
+    document.querySelector('.back-button').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.body.style.opacity = '0.8';
+      document.body.style.transition = 'opacity 0.3s ease';
+      setTimeout(() => {
+        window.location.href = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+      }, 300);
+    });
+  </script>
+</body>
+</html>

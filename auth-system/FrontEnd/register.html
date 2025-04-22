@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-white rounded-xl shadow-lg overflow-hidden animate__animated animate__fadeIn animate__faster">
+        <div class="bg-gradient-to-r from-amber-500 to-orange-600 p-6 text-white relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-amber-400 opacity-20"></div>
+            <div class="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-orange-400 opacity-20"></div>
+            <div class="relative z-10">
+                <h1 class="text-2xl font-bold flex items-center">
+                    <i class="fas fa-calendar-check mr-2"></i> Event Registration
+                </h1>
+                <p id="selectedEventDisplay" class="mt-2 text-amber-100 flex items-center">
+                    <i class="fas fa-tag mr-2"></i> Selected Event: 
+                    <span id="eventName" class="font-medium ml-1"></span>
+                </p>
+            </div>
+        </div>
+        
+        <form id="registrationForm" class="p-6 space-y-6">
+            <div class="animate__animated animate__fadeInUp">
+                <label for="eventSelect" class="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                    <i class="fas fa-calendar-alt mr-2 text-amber-600"></i> Select Event
+                </label>
+                <select id="eventSelect" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 shadow-sm hover:shadow-md">
+                    <option value="Web Dev Bootcamp">Web Dev Bootcamp - March 25, 2025</option>
+                    <option value="UX Design Workshop">UX Design Workshop - April 5, 2025</option>
+                    <option value="AI Conference">AI Conference - April 15-17, 2025</option>
+                </select>
+            </div>
+            
+            <div class="animate__animated animate__fadeInUp animate__delay-1s">
+                <label for="fullName" class="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                    <i class="fas fa-user mr-2 text-amber-600"></i> Full Name
+                </label>
+                <input type="text" id="fullName" required 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 shadow-sm hover:shadow-md"
+                    placeholder="John Doe">
+                <p id="nameError" class="text-red-500 text-xs mt-1 hidden flex items-center">
+                    <i class="fas fa-exclamation-circle mr-1"></i> Please enter a valid name (at least 3 characters)
+                </p>
+            </div>
+            
+            <div class="animate__animated animate__fadeInUp animate__delay-2s">
+                <label for="regNo" class="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                    <i class="fas fa-id-card mr-2 text-amber-600"></i> Registration Number
+                </label>
+                <input type="text" id="regNo" required 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 shadow-sm hover:shadow-md"
+                    placeholder="ABC123456">
+                <p id="regNoError" class="text-red-500 text-xs mt-1 hidden flex items-center">
+                    <i class="fas fa-exclamation-circle mr-1"></i> Please enter a valid registration number (at least 4 characters)
+                </p>
+            </div>
+            
+            <div class="animate__animated animate__fadeInUp animate__delay-3s">
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                    <i class="fas fa-envelope mr-2 text-amber-600"></i> Email
+                </label>
+                <input type="email" id="email" required 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 shadow-sm hover:shadow-md"
+                    placeholder="example@domain.com">
+                <p id="emailError" class="text-red-500 text-xs mt-1 hidden flex items-center">
+                    <i class="fas fa-exclamation-circle mr-1"></i> Please enter a valid email address
+                </p>
+            </div>
+            
+            <div class="pt-2 animate__animated animate__fadeInUp animate__delay-4s">
+                <button type="submit" id="submitBtn"
+                    class="w-full bg-gradient-to-r from-amber-500 to-orange-600 text-white py-3 px-4 rounded-lg font-medium hover:from-amber-600 hover:to-orange-700 transition duration-300 shadow-lg hover:shadow-xl flex items-center justify-center">
+                    <i class="fas fa-paper-plane mr-2"></i> Complete Registration
+                </button>
+            </div>
+        </form>
+
+        <!-- Success Modal -->
+        <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div class="bg-white p-8 rounded-xl max-w-sm text-center animate__animated animate__zoomIn">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check-circle text-green-500 text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Registration Successful!</h3>
+                <p class="text-gray-600 mb-4">Thank you for registering. You'll receive a confirmation email shortly.</p>
+                <button onclick="window.location.href='home.html'" 
+                    class="bg-amber-500 text-white px-6 py-2 rounded-lg hover:bg-amber-600 transition duration-200">
+                    Return to Home
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get elements
+            const eventSelect = document.getElementById('eventSelect');
+            const selectedEventDisplay = document.getElementById('selectedEventDisplay');
+            const eventName = document.getElementById('eventName');
+            const form = document.getElementById('registrationForm');
+            const successModal = document.getElementById('successModal');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Load selected event from localStorage
+            const selectedEvent = localStorage.getItem('selectedEvent');
+            if (selectedEvent) {
+                eventSelect.value = selectedEvent;
+                eventName.textContent = selectedEvent;
+            }
+
+            // Update event display when selection changes
+            eventSelect.addEventListener('change', function() {
+                eventName.textContent = this.value;
+                eventName.classList.add('animate__animated', 'animate__pulse');
+                setTimeout(() => {
+                    eventName.classList.remove('animate__animated', 'animate__pulse');
+                }, 1000);
+            });
+
+            // Initialize event display
+            eventName.textContent = eventSelect.value;
+
+            // Add input focus effects
+            const inputs = document.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('animate__animated', 'animate__pulse');
+                    setTimeout(() => {
+                        this.parentElement.classList.remove('animate__animated', 'animate__pulse');
+                    }, 1000);
+                });
+            });
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Reset error messages
+                document.getElementById('nameError').classList.add('hidden');
+                document.getElementById('regNoError').classList.add('hidden');
+                document.getElementById('emailError').classList.add('hidden');
+                
+                // Get form values
+                const fullName = document.getElementById('fullName').value.trim();
+                const regNo = document.getElementById('regNo').value.trim();
+                const email = document.getElementById('email').value.trim();
+                
+                // Validate inputs
+                let isValid = true;
+                
+                if (fullName.length < 3) {
+                    document.getElementById('nameError').classList.remove('hidden');
+                    isValid = false;
+                    document.getElementById('fullName').classList.add('border-red-500');
+                } else {
+                    document.getElementById('fullName').classList.remove('border-red-500');
+                }
+                
+                if (regNo.length < 4) {
+                    document.getElementById('regNoError').classList.remove('hidden');
+                    isValid = false;
+                    document.getElementById('regNo').classList.add('border-red-500');
+                } else {
+                    document.getElementById('regNo').classList.remove('border-red-500');
+                }
+                
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    document.getElementById('emailError').classList.remove('hidden');
+                    isValid = false;
+                    document.getElementById('email').classList.add('border-red-500');
+                } else {
+                    document.getElementById('email').classList.remove('border-red-500');
+                }
+                
+                // If validation passes
+                if (isValid) {
+                    // Disable button and show loading state
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
+                    
+                    // Store registration data
+                    const registrationData = {
+                        event: eventSelect.value,
+                        name: fullName,
+                        regNo: regNo,
+                        email: email,
+                        timestamp: new Date().toISOString()
+                    };
+                    localStorage.setItem('registrationData', JSON.stringify(registrationData));
+                    
+                    // Simulate processing delay
+                    setTimeout(() => {
+                        // Show success modal
+                        successModal.classList.remove('hidden');
+                        
+                        // Reset button after delay
+                        setTimeout(() => {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Complete Registration';
+                        }, 2000);
+                    }, 1500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,552 @@
+/* Animation keyframes with optimized properties */
+@keyframes animate-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse-slow {
+    0%, 100% { transform: scale(1); opacity: 0.1; }
+    50% { transform: scale(1.05); opacity: 0.15; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(1.1);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Base styles with will-change for optimization */
+.page1 {
+    will-change: transform, opacity;
+    contain: strict;
+}
+
+/* Utility Classes */
+.animate-pulse-slow {
+    animation: pulse-slow 8s ease-in-out infinite;
+    will-change: transform, opacity;
+}
+
+.animate-gradient {
+    animation: animate-gradient 6s ease infinite;
+    will-change: background-position;
+}
+
+/* Slide Styles with hardware acceleration */
+.slide {
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 12s linear;
+    transform: scale(1.15);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+.slide.active {
+    opacity: 1;
+    z-index: 2;
+    transform: scale(1.05);
+}
+
+/* Indicators with will-change */
+.indicator {
+    transition: all 0.3s ease;
+    will-change: transform, box-shadow;
+}
+
+.indicator.active {
+    background-color: white;
+    transform: scale(1.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+/* Content Animations with optimized properties */
+.slide-content {
+    animation: fadeInUp 1s ease-out 0.5s both;
+    will-change: transform, opacity;
+}
+
+.slide-title {
+    animation: fadeInUp 1s ease-out 0.7s both;
+    will-change: transform, opacity;
+}
+
+.slide-subtitle {
+    animation: fadeInUp 1s ease-out 0.9s both;
+    will-change: transform, opacity;
+}
+
+.slide-buttons {
+    animation: fadeInUp 1s ease-out 1.1s both;
+    will-change: transform, opacity;
+}
+
+.slide-stats {
+    animation: fadeInUp 1s ease-out 1.3s both;
+    will-change: transform, opacity;
+}
+
+/* Video Modal with optimized backdrop */
+#videoModal {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    will-change: opacity;
+}
+
+#videoModal.show {
+    opacity: 1;
+    pointer-events: all;
+    animation: modalFadeIn 0.3s ease-out forwards;
+}
+
+/* Particle canvas optimization */
+#particlesCanvas {
+    will-change: transform, opacity;
+}
+
+/* Responsive Adjustments with media queries */
+@media (max-width: 768px) {
+    #prev, #next {
+        display: none;
+    }
+    
+    .slide-title {
+        font-size: 2.5rem;
+    }
+    
+    .slide-subtitle {
+        font-size: 1rem;
+    }
+    
+    .slide-buttons {
+        flex-direction: column;
+    }
+    
+    .slide-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Reduce particle count on mobile */
+    #particlesCanvas {
+        display: none; /* Or keep with reduced particles in JS */
+    }
+}
+
+@media (max-width: 640px) {
+    #videoPlayer {
+        height: 250px !important;
+    }
+    
+    .slide-title {
+        font-size: 2rem;
+    }
+    
+    .slide-stats > div {
+        padding: 0.75rem;
+    }
+    
+    .slide-stats > div > div:first-child {
+        font-size: 1.5rem;
+    }
+    
+    /* Disable some animations on very small devices */
+    .animate-pulse-slow,
+    .animate-gradient {
+        animation: none;
+    }
+}
+
+/* Rest of your existing styles... */
+
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes floatDelay {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-25px);
+    }
+}
+
+@keyframes fadeInSlow {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-float {
+    animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-delay {
+    animation: floatDelay 10s ease-in-out infinite 2s;
+}
+
+.animate-fadeInSlow {
+    animation: fadeInSlow 1.5s ease-out;
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.animate-pulse-scale {
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.animate-bounce-in {
+    animation: bounceIn 0.6s ease-out forwards;
+}
+
+.animate-shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+.delay-100 {
+    animation-delay: 0.1s;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Image preview styling */
+#imagePreviewContainer {
+    position: relative;
+    margin-left: 10px;
+}
+
+#removeImageButton {
+    transition: all 0.2s ease;
+}
+
+#removeImageButton:hover {
+    transform: scale(1.1);
+    background-color: #ef4444;
+}
+
+/* Comment styling */
+.comment {
+    display: flex;
+    margin-bottom: 8px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.comment-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.comment-content {
+    flex: 1;
+    background-color: #f3f4f6;
+    padding: 8px 12px;
+    border-radius: 18px;
+    font-size: 14px;
+}
+
+.comment-username {
+    font-weight: 600;
+    margin-right: 6px;
+    color: #374151;
+}
+
+.comment-text {
+    color: #4b5563;
+}
+
+/* Trending discussion */
+
+
+/* Floating animations */
+@keyframes float1 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-10px) translateX(5px); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-15px) translateX(-5px); }
+}
+
+@keyframes float3 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(5px) translateX(10px); }
+}
+
+@keyframes float4 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-8px) translateX(-8px); }
+}
+
+@keyframes float5 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(10px) translateX(-5px); }
+}
+
+.animate-float1 {
+    animation: float1 6s ease-in-out infinite;
+}
+
+.animate-float2 {
+    animation: float2 8s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+.animate-float3 {
+    animation: float3 7s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+.animate-float4 {
+    animation: float4 9s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+.animate-float5 {
+    animation: float5 7.5s ease-in-out infinite;
+    animation-delay: 1.5s;
+}
+
+/* Custom hover effects */
+.group:hover .group-hover\:translate-y-0 {
+    transform: translateY(0);
+}
+
+.group:hover .group-hover\:max-h-10 {
+    max-height: 2.5rem;
+}
+
+.group:hover .group-hover\:max-h-20 {
+    max-height: 5rem;
+}
+
+.group:hover .group-hover\:opacity-100 {
+    opacity: 1;
+}
+
+/* Pulse animation for live indicator */
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Custom transitions */
+.transition-max-h {
+    transition-property: max-height;
+}
+
+.transition-transform-delay-75 {
+    transition-delay: 75ms;
+}
+
+.transition-transform-delay-100 {
+    transition-delay: 100ms;
+}
+
+.transition-transform-delay-150 {
+    transition-delay: 150ms;
+}
+
+
+/* Questions and About */
+
+
+/* Animation styles */
+/* Animation styles */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.75; }
+    50% { opacity: 0.9; }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay {
+    animation: float 6s ease-in-out 1s infinite;
+}
+
+.animate-pulse {
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.faq-item.active .faq-question svg {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    transition: max-height 0.5s ease-out, opacity 0.3s ease, padding 0.3s ease;
+    opacity: 0;
+    padding: 0 20px;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    opacity: 1;
+    padding-bottom: 20px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.faq-item.active .faq-answer div {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Counter animation */
+.animate-counter {
+    transition: all 0.5s ease-out;
+}
+
+/* Hover effects */
+.hover-glow:hover {
+    box-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
+}
+
+/* Gradient text */
+.gradient-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}

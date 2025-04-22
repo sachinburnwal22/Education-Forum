@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Forums | Academic Resources</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        .card-hover-effect {
+            transition: all 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .button-pulse:hover {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="max-w-6xl w-full">
+        <header class="flex justify-between items-center mb-12 animate__animated animate__fadeInDown">
+            <h1 class="text-3xl font-bold text-gray-800 flex items-center">
+                <span class="bg-green-100 p-2 rounded-lg mr-3">📚</span>
+                Academic Subject Forums
+            </h1>
+            <button id="backButton" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full transition-all duration-300 button-pulse flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+                Back to Home
+            </button>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Math Forum Card -->
+            <div class="bg-gradient-to-br from-blue-100 to-blue-50 p-8 rounded-2xl shadow-lg border border-blue-200/50 card-hover-effect animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="text-blue-600 text-5xl mb-6 flex justify-center floating">🧮</div>
+                <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Mathematics Forum</h3>
+                <p class="text-gray-600 text-center mb-6">Discuss algebra, calculus, geometry and more. Get help with problems and share solutions.</p>
+                <div class="flex justify-center">
+                    <button class="forum-button bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-all duration-300 flex items-center">
+                        Join Discussion
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Science Forum Card -->
+            <div class="bg-gradient-to-br from-purple-100 to-purple-50 p-8 rounded-2xl shadow-lg border border-purple-200/50 card-hover-effect animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="text-purple-600 text-5xl mb-6 flex justify-center floating">🔬</div>
+                <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Science Forum</h3>
+                <p class="text-gray-600 text-center mb-6">Explore physics, chemistry, biology and earth sciences. Share experiments and findings.</p>
+                <div class="flex justify-center">
+                    <button class="forum-button bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full transition-all duration-300 flex items-center">
+                        Join Discussion
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Literature Forum Card -->
+            <div class="bg-gradient-to-br from-red-100 to-red-50 p-8 rounded-2xl shadow-lg border border-red-200/50 card-hover-effect animate__animated animate__fadeInUp animate__delay-3s">
+                <div class="text-red-600 text-5xl mb-6 flex justify-center floating">📖</div>
+                <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Literature Forum</h3>
+                <p class="text-gray-600 text-center mb-6">Analyze novels, poetry, and drama. Share interpretations and literary criticism.</p>
+                <div class="flex justify-center">
+                    <button class="forum-button bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full transition-all duration-300 flex items-center">
+                        Join Discussion
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 text-center animate__animated animate__fadeIn animate__delay-4s">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Can't find your subject?</h2>
+            <p class="text-gray-600 mb-6">We're constantly adding new forums. Request a new subject forum below.</p>
+            <button class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full transition-all duration-300 button-pulse font-medium">
+                Request New Forum
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Back button functionality
+        document.getElementById('backButton').addEventListener('click', function() {
+            // Add animation to button click
+            this.classList.add('animate__animated', 'animate__pulse');
+            
+            // Remove animation after it completes
+            setTimeout(() => {
+                this.classList.remove('animate__animated', 'animate__pulse');
+            }, 1000);
+            
+            // Navigate back to index.html after a slight delay
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 500);
+        });
+
+        // Forum button functionality
+        const forumButtons = document.querySelectorAll('.forum-button');
+        forumButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Add click animation
+                this.classList.add('animate__animated', 'animate__pulse');
+                
+                // Remove animation after it completes
+                setTimeout(() => {
+                    this.classList.remove('animate__animated', 'animate__pulse');
+                }, 1000);
+                
+                // Here you would typically redirect to the specific forum page
+                // For now, we'll just show an alert
+                const forumName = this.closest('div[class*="bg-gradient-to-br"]').querySelector('h3').textContent;
+                alert(`You clicked on ${forumName}. In a real application, this would take you to the forum page.`);
+            });
+        });
+
+        // Add hover effect to all cards
+        const cards = document.querySelectorAll('.card-hover-effect');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('animate__animated', 'animate__pulse');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('animate__animated', 'animate__pulse');
+            });
+        });
+    </script>
+</body>
+</html>
