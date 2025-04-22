@@ -1,5 +1,4 @@
 const express = require("express");
-const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
@@ -7,21 +6,22 @@ require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 
 const app = express();
-app.use(cors());
+
+// CORS setup: allow requests from your Vercel frontend
+app.use(
+  cors({
+    origin:
+      "https://education-forum-git-main-burnwallucky2-gmailcoms-projects.vercel.app",
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
-// Serve frontend static files
-app.use(express.static(path.join(__dirname, "../frontend")));
-
-// Mount API routes
+// API Routes
 app.use("/api/auth", authRoutes);
 
-// Catch-all: send frontend's index.html (exclude /api routes)
-app.get(/^\/(?!api).*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/index.html"));
-});
-
-// Connect to MongoDB and start server
+// MongoDB Connection
 const mongoURI = process.env.MONGO_URI;
 console.log("Mongo URI is:", process.env.MONGO_URI);
 
